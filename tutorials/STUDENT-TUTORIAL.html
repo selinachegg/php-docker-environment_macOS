@@ -28,7 +28,6 @@ body {
   color: var(--text);
   background: #f1f5f9;
 }
-.hidden { display: none !important; }
 
 /* ══════════════════════════════════════════════════════════
    OS SELECTION SCREEN
@@ -693,52 +692,14 @@ pre code {
 <body>
 
 <!-- ████████████████████████████████████████
-     SELECTION SCREEN
-████████████████████████████████████████ -->
-<div id="page-selector" class="selector-screen">
-
-  <div class="sel-badge">🐳 PHP Docker Environment — User Guide</div>
-  <div class="sel-logo">💻</div>
-  <h1 class="sel-title">What is your computer?</h1>
-  <p class="sel-subtitle">
-    Choose your operating system to access<br>
-    the appropriate installation and usage tutorial.
-  </p>
-
-  <div class="os-cards">
-
-    <button class="os-btn mac-btn" onclick="selectOS('mac')">
-      <div class="os-icon">🍎</div>
-      <div class="os-name">macOS</div>
-      <div class="os-desc">macOS 14+ (Sonoma, Sequoia, Tahoe)<br>Mac Intel or Apple Silicon (M1 / M2 / M3 / M4 / M5)</div>
-      <div class="os-cta">Mac Tutorial →</div>
-    </button>
-
-    <button class="os-btn win-btn" onclick="selectOS('win')">
-      <div class="os-icon">🪟</div>
-      <div class="os-name">Windows</div>
-      <div class="os-desc">Windows 10 or 11<br>Intel/AMD (x64) or Qualcomm (Arm64)</div>
-      <div class="os-cta">Windows Tutorial →</div>
-    </button>
-
-  </div>
-
-  <p class="sel-footer">
-    Apache + PHP 7.4 + MariaDB 10.6 + phpMyAdmin 5.2 + Portainer CE
-  </p>
-</div>
-
-
-<!-- ████████████████████████████████████████
      MAC TUTORIAL
 ████████████████████████████████████████ -->
-<div id="tuto-mac" class="tuto hidden">
+<div id="tuto-mac" class="tuto">
 
 <!-- Mac navigation bar -->
 <div class="nav-bar">
-  <button class="nav-back" onclick="goBack()">← Choose my system</button>
-  <span class="nav-label">Tutorial</span>
   <span class="nav-badge">🍎 macOS</span>
+  <span class="nav-label">PHP Docker Environment — Tutorial</span>
   <button class="nav-print" onclick="window.print()">🖨️ Save as PDF</button>
 </div>
 
@@ -780,9 +741,9 @@ pre code {
       </ul>
     </li>
     <li>
-      <div class="toc-row"><div class="toc-num">2</div><div class="toc-text">First launch of the environment</div><div class="toc-pg">p. 4</div></div>
+      <div class="toc-row"><div class="toc-num">2</div><div class="toc-text">First-time setup &amp; launch</div><div class="toc-pg">p. 4</div></div>
       <ul class="toc-sub">
-        <li><div class="toc-text">Prepare the scripts (one time only)</div></li>
+        <li><div class="toc-text">Run install.sh (one-time macOS setup)</div></li>
         <li><div class="toc-text">Launch the environment with the launcher</div></li>
       </ul>
     </li>
@@ -892,19 +853,31 @@ pre code {
 </div>
 </div>
 
-<!-- ── CH.2 MAC: FIRST LAUNCH ── -->
+<!-- ── CH.2 MAC: FIRST-TIME SETUP & LAUNCH ── -->
 <div class="page page-break">
 <div class="page-content">
   <div class="ch-header">
     <div class="ch-num">2</div>
-    <div><div class="ch-label">Chapter 2</div><div class="ch-title">First launch</div><div class="ch-sub">Launch the environment with a double-click</div></div>
+    <div><div class="ch-label">Chapter 2</div><div class="ch-title">First-time setup &amp; launch</div><div class="ch-sub">One command to set everything up, then double-click to launch</div></div>
+  </div>
+
+  <h2>🔧 One-time setup — <code>install.sh</code></h2>
+  <p>macOS blocks downloaded files for security (Gatekeeper). This script removes those blocks, sets permissions, and checks Docker. <strong>You only need to do this once.</strong></p>
+  <ul class="steps">
+    <li class="step"><div class="snum">1</div><div><div class="stitle">Open <strong>Terminal</strong></div><div class="sdesc">Launchpad → search "Terminal" → click on it</div></div></li>
+    <li class="step"><div class="snum">2</div><div><div class="stitle">Paste this command and press Enter:</div><div class="sdesc" style="margin-top:4px"><pre style="margin:4px 0"><code style="font-size:9pt">cd ~/Desktop/PHPenv && bash install.sh</code></pre></div></div></li>
+    <li class="step"><div class="snum">3</div><div><div class="stitle">Wait for "Setup complete!"</div><div class="sdesc">The script removes security blocks, sets permissions, and verifies Docker is installed</div></div></li>
+  </ul>
+  <div class="alert a-ok">
+    <div class="aico">✅</div>
+    <div class="abody"><div class="atitle">After this step</div><div class="atext">You can double-click any <code>.command</code> file without security warnings. You never need to run <code>install.sh</code> again.</div></div>
   </div>
 
   <h2>🚀 Launch the environment</h2>
   <ul class="steps">
-    <li class="step"><div class="snum">1</div><div><div class="stitle">Verify that Docker Desktop is open and green</div><div class="sdesc">Check the whale icon at the top right of the screen</div></div></li>
-    <li class="step"><div class="snum">2</div><div><div class="stitle">Double-click on <code>launcher.command</code></div><div class="sdesc">A menu appears with all actions: Start, Stop, Restart, Reset Portainer</div></div></li>
-    <li class="step"><div class="snum">3</div><div><div class="stitle">Select "Start" and click OK</div><div class="sdesc">Wait for the confirmation dialog — the dashboard opens automatically</div></div></li>
+    <li class="step"><div class="snum">1</div><div><div class="stitle">Double-click on <code>launcher.command</code></div><div class="sdesc">A Terminal window opens with a numbered menu</div></div></li>
+    <li class="step"><div class="snum">2</div><div><div class="stitle">Type <strong>1</strong> and press Enter to Start</div><div class="sdesc">The launcher automatically starts Docker Desktop if it's not running, then launches all services</div></div></li>
+    <li class="step"><div class="snum">3</div><div><div class="stitle">Wait for the dashboard to open</div><div class="sdesc">The browser opens automatically at localhost:8082</div></div></li>
     <li class="step"><div class="snum snum red">!</div><div><div class="stitle" style="color:#dc2626">Go to Portainer immediately!</div><div class="sdesc">Open http://localhost:9000 within the first 5 minutes to create your account. See Ch.3 for details.</div></div></li>
   </ul>
   <div class="alert a-warn">
@@ -913,7 +886,7 @@ pre code {
   </div>
   <div class="alert a-tip">
     <div class="aico">💡</div>
-    <div class="abody"><div class="atitle">Manual scripts</div><div class="atext">The scripts <code>start.command</code> and <code>stop.command</code> are also available if the launcher doesn't work.</div></div>
+    <div class="abody"><div class="atitle">Launcher menu</div><div class="atext">The launcher offers 5 options: <strong>1) Start</strong>, <strong>2) Stop</strong>, <strong>3) Restart</strong>, <strong>4) Reset Portainer</strong>, <strong>5) Quit</strong>. Individual scripts (<code>start.command</code>, <code>stop.command</code>) are also available.</div></div>
   </div>
 </div>
 </div>
@@ -1140,7 +1113,7 @@ echo <span class="cs">"Hello world!"</span>;
 
   <div class="alert a-tip">
     <div class="aico">💡</div>
-    <div class="abody"><div class="atitle">Daily routine</div><div class="atext"><strong>Morning</strong>: Open Docker Desktop → double-click <code>launcher.command</code> → Start<br><strong>Evening</strong>: <code>launcher.command</code> → Stop</div></div>
+    <div class="abody"><div class="atitle">Daily routine</div><div class="atext"><strong>Morning</strong>: Double-click <code>launcher.command</code> → type <strong>1</strong> (Start). Docker Desktop is launched automatically if needed.<br><strong>Evening</strong>: <code>launcher.command</code> → type <strong>2</strong> (Stop)</div></div>
   </div>
 </div>
 </div>
@@ -1156,15 +1129,22 @@ echo <span class="cs">"Hello world!"</span>;
   <h2>🔴 Common issues</h2>
 
   <div class="card c-red" style="margin-bottom:9px">
+    <div class="ctitle" style="color:#dc2626">❌ "Cannot be opened because it is from an unidentified developer"</div>
+    <p style="font-size:9.5pt;color:#475569;margin:0 0 5px"><strong>Cause</strong>: macOS Gatekeeper blocks files downloaded from the internet.<br><strong>Solution:</strong> Run the setup script in Terminal:</p>
+    <pre style="margin:4px 0"><code style="font-size:8.5pt">cd ~/Desktop/PHPenv && bash install.sh</code></pre>
+    <p style="font-size:9pt;color:#475569;margin:4px 0 0"><strong>Alternative:</strong> Right-click on the <code>.command</code> file → <strong>"Open"</strong> → click <strong>"Open"</strong> in the dialog. macOS remembers this choice.</p>
+  </div>
+
+  <div class="card c-red" style="margin-bottom:9px">
     <div class="ctitle" style="color:#dc2626">❌ Portainer — "timeout" page (/timeout.html)</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0 0 5px"><strong>Cause</strong>: admin account not created within the first 5 minutes.<br><strong>Solution:</strong> Restart Portainer (preserves all data):</p>
+    <p style="font-size:9.5pt;color:#475569;margin:0 0 5px"><strong>Cause</strong>: admin account not created within the first 5 minutes.<br><strong>Solution:</strong> Use the launcher → option <strong>4 (Reset Portainer)</strong>, or run:</p>
     <pre style="margin:4px 0"><code style="font-size:8.5pt">docker compose restart portainer</code></pre>
-    <p style="font-size:9pt;color:#475569;margin:4px 0 0">Then go <strong>immediately</strong> to http://localhost:9000 to create your account.<br><strong>Full reset</strong>: Docker Desktop → Volumes → delete <code>cours_portainer_data</code> → relaunch Portainer.</p>
+    <p style="font-size:9pt;color:#475569;margin:4px 0 0">Then go <strong>immediately</strong> to http://localhost:9000 to create your account.</p>
   </div>
 
   <div class="card c-red" style="margin-bottom:9px">
     <div class="ctitle" style="color:#dc2626">❌ Docker Desktop is not started</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0">Open <strong>Docker Desktop</strong> from the Launchpad → wait for the green whale → relaunch <code>launcher.command</code></p>
+    <p style="font-size:9.5pt;color:#475569;margin:0">The launcher starts Docker Desktop <strong>automatically</strong>. If it fails, open <strong>Docker Desktop</strong> from the Launchpad → wait for the green whale → relaunch <code>launcher.command</code></p>
   </div>
 
   <div class="card c-red" style="margin-bottom:9px">
@@ -1174,8 +1154,8 @@ echo <span class="cs">"Hello world!"</span>;
 
   <div class="card c-red" style="margin-bottom:9px">
     <div class="ctitle" style="color:#dc2626">❌ "Permission denied" on .command files</div>
-    <p style="font-size:9pt;color:#475569;margin:4px 0">Open Terminal and type:</p>
-    <pre style="margin:4px 0"><code style="font-size:8.5pt">chmod +x launcher.command start.command stop.command</code></pre>
+    <p style="font-size:9pt;color:#475569;margin:4px 0">Run <code>install.sh</code> again, or open Terminal and type:</p>
+    <pre style="margin:4px 0"><code style="font-size:8.5pt">cd ~/Desktop/PHPenv && chmod +x *.command</code></pre>
   </div>
 
   <div class="card c-red" style="margin-bottom:16px">
@@ -1207,473 +1187,11 @@ echo <span class="cs">"Hello world!"</span>;
 </div><!-- end tuto-mac -->
 
 
-<!-- ████████████████████████████████████████
-     WINDOWS TUTORIAL
-████████████████████████████████████████ -->
-<div id="tuto-win" class="tuto hidden">
-
-<!-- Windows navigation bar -->
-<div class="nav-bar win">
-  <button class="nav-back" onclick="goBack()">← Choose my system</button>
-  <span class="nav-label">Tutorial</span>
-  <span class="nav-badge win">🪟 Windows</span>
-  <button class="nav-print" onclick="window.print()">🖨️ Save as PDF</button>
-</div>
-
-<!-- ── WINDOWS COVER ── -->
-<div class="cover cover-win page-break">
-  <div class="cover-badge">Windows Tutorial — Beginner's Guide</div>
-  <div class="cover-logo">🪟</div>
-  <h1>PHP Environment<br><span>on Windows</span></h1>
-  <p class="cover-subtitle">Docker Desktop installation guide<br>and step-by-step usage — Windows 10 or 11 — Intel/AMD (x64) or Qualcomm (Arm64)</p>
-  <div class="cover-chips">
-    <span class="cover-chip">🌐 Apache 2.4</span>
-    <span class="cover-chip">⚙️ PHP 7.4</span>
-    <span class="cover-chip">🗃️ MariaDB 10.6</span>
-    <span class="cover-chip">🔧 phpMyAdmin</span>
-    <span class="cover-chip">🐳 Portainer</span>
-  </div>
-  <div class="cover-urls">
-    <table>
-      <tr><td>🌐 PHP Site</td><td>http://localhost:8080</td></tr>
-      <tr><td>🗄️ phpMyAdmin</td><td>http://localhost:8081</td></tr>
-      <tr><td>🐳 Portainer (GUI)</td><td>http://localhost:9000</td></tr>
-      <tr><td>🏠 Dashboard</td><td>http://localhost:8082</td></tr>
-    </table>
-  </div>
-  <div class="cover-footer">Windows Tutorial — PHP Course Docker Environment — Docker Desktop</div>
-</div>
-
-<!-- ── WINDOWS TABLE OF CONTENTS ── -->
-<div class="page page-break">
-<div class="toc-page">
-  <div class="toc-title win">Table of Contents — Windows</div>
-  <ul class="toc-list">
-    <li>
-      <div class="toc-row"><div class="toc-num win">1</div><div class="toc-text">Install Docker Desktop</div><div class="toc-pg">p. 3</div></div>
-      <ul class="toc-sub">
-        <li><div class="toc-text">Download and installation</div></li>
-        <li><div class="toc-text">Verify that Docker is ready</div></li>
-      </ul>
-    </li>
-    <li>
-      <div class="toc-row"><div class="toc-num win">2</div><div class="toc-text">First launch of the environment</div><div class="toc-pg">p. 4</div></div>
-      <ul class="toc-sub">
-        <li><div class="toc-text">Launch with the launcher (double-click)</div></li>
-        <li><div class="toc-text">Configure Portainer immediately</div></li>
-      </ul>
-    </li>
-    <li>
-      <div class="toc-row"><div class="toc-num win">3</div><div class="toc-text">Access the web interfaces</div><div class="toc-pg">p. 5</div></div>
-      <ul class="toc-sub">
-        <li><div class="toc-text">Dashboard (8082), PHP Site (8080), phpMyAdmin (8081)</div></li>
-        <li><div class="toc-text">Portainer — create your account (important!)</div></li>
-      </ul>
-    </li>
-    <li>
-      <div class="toc-row"><div class="toc-num win">4</div><div class="toc-text">Working with PHP</div><div class="toc-pg">p. 7</div></div>
-      <ul class="toc-sub">
-        <li><div class="toc-text">The htdocs folder in Windows Explorer</div></li>
-        <li><div class="toc-text">Create and test a PHP file</div></li>
-        <li><div class="toc-text">Connect to the database</div></li>
-      </ul>
-    </li>
-    <li>
-      <div class="toc-row"><div class="toc-num win">5</div><div class="toc-text">Manage the database with phpMyAdmin</div><div class="toc-pg">p. 8</div></div>
-    </li>
-    <li>
-      <div class="toc-row"><div class="toc-num win">6</div><div class="toc-text">Stop and restart services</div><div class="toc-pg">p. 9</div></div>
-    </li>
-    <li>
-      <div class="toc-row"><div class="toc-num win">7</div><div class="toc-text">Windows Troubleshooting</div><div class="toc-pg">p. 10</div></div>
-      <ul class="toc-sub">
-        <li><div class="toc-text">Portainer timeout — reset-portainer.bat</div></li>
-        <li><div class="toc-text">Ports in use, launcher not working</div></li>
-        <li><div class="toc-text">Credentials summary</div></li>
-      </ul>
-    </li>
-  </ul>
-  <div class="alert a-info" style="margin-top:32px">
-    <div class="aico">ℹ️</div>
-    <div class="abody">
-      <div class="atitle">About this tutorial</div>
-      <div class="atext">This guide is designed for Windows 10 or 11 — Intel/AMD (x64) or Qualcomm (Arm64) — with Docker Desktop. All operations are performed through graphical interfaces after the initial setup.</div>
-    </div>
-  </div>
-</div>
-</div>
-
-<!-- ── CH.1 WIN: INSTALL DOCKER DESKTOP ── -->
-<div class="page page-break">
-<div class="page-content">
-  <div class="ch-header win">
-    <div class="ch-num">1</div>
-    <div><div class="ch-label">Chapter 1</div><div class="ch-title">Install Docker Desktop</div><div class="ch-sub">One-time setup on your Windows PC</div></div>
-  </div>
-
-  <h2>⬇️ Download and installation</h2>
-  <ul class="steps">
-    <li class="step"><div class="snum">1</div><div><div class="stitle">Go to docker.com → "Download for Windows"</div><div class="sdesc">Download the <code>Docker Desktop Installer.exe</code> file</div></div></li>
-    <li class="step"><div class="snum">2</div><div><div class="stitle">Run the installer</div><div class="sdesc">Follow the on-screen instructions — Docker automatically installs everything it needs (including WSL2)</div></div></li>
-    <li class="step"><div class="snum">3</div><div><div class="stitle">Restart your PC if prompted</div><div class="sdesc">Some PCs require a restart to finalize the installation</div></div></li>
-    <li class="step"><div class="snum">4</div><div><div class="stitle">Open Docker Desktop</div><div class="sdesc">Start menu → search for "Docker Desktop" → click on it</div></div></li>
-  </ul>
-  <div class="alert a-info">
-    <div class="aico">ℹ️</div>
-    <div class="abody"><div class="atitle">Automatic setup</div><div class="atext">Docker Desktop automatically installs and configures WSL2 (Windows Subsystem for Linux) if needed. No manual intervention is required.</div></div>
-  </div>
-
-  <h2>✅ Docker Desktop is ready when...</h2>
-  <div class="card c-green">
-    <div class="ctitle">The whale icon 🐳 appears in the taskbar</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0"><strong>Bottom-right</strong> corner of the Windows screen (notification area). It must be stable (not animated = ready).</p>
-  </div>
-  <div class="alert a-warn">
-    <div class="aico">⚠️</div>
-    <div class="abody"><div class="atitle">Docker Desktop must stay open</div><div class="atext">Docker Desktop must remain running (even in the background) during your entire work session.</div></div>
-  </div>
-</div>
-</div>
-
-<!-- ── CH.2 WIN: FIRST LAUNCH ── -->
-<div class="page page-break">
-<div class="page-content">
-  <div class="ch-header win">
-    <div class="ch-num">2</div>
-    <div><div class="ch-label">Chapter 2</div><div class="ch-title">First launch</div><div class="ch-sub">Launch the environment with the launcher (double-click)</div></div>
-  </div>
-
-  <h2>🚀 Launch the environment</h2>
-  <ul class="steps">
-    <li class="step"><div class="snum">1</div><div><div class="stitle">Open Docker Desktop from the Start menu</div><div class="sdesc">Wait for the whale icon to appear in the taskbar (bottom-right corner)</div></div></li>
-    <li class="step"><div class="snum">2</div><div><div class="stitle">Double-click on <code>launcher.bat</code></div><div class="sdesc">A graphical window opens with all actions: Start, Stop, Restart, Reset Portainer</div></div></li>
-    <li class="step"><div class="snum">3</div><div><div class="stitle">Click "Start"</div><div class="sdesc">Wait for the status to turn green — the dashboard opens automatically</div></div></li>
-    <li class="step"><div class="snum snum red">!</div><div><div class="stitle" style="color:#dc2626">Go to Portainer IMMEDIATELY!</div><div class="sdesc">Open http://localhost:9000 within the first 5 minutes to create your account. See Ch.3 for details.</div></div></li>
-  </ul>
-
-  <div class="alert a-warn">
-    <div class="aico">⏱️</div>
-    <div class="abody"><div class="atitle">First time: wait 5 to 10 minutes</div><div class="atext">Docker is downloading all the images (PHP, MariaDB...). This is slow <strong>only the first time</strong>. Subsequent launches: less than 10 seconds.</div></div>
-  </div>
-
-  <div class="alert a-tip">
-    <div class="aico">💡</div>
-    <div class="abody"><div class="atitle">Manual scripts</div><div class="atext">The scripts <code>start.bat</code> and <code>stop.bat</code> are also available if you prefer manual control.</div></div>
-  </div>
-
-  <h2>📁 Where is the project folder?</h2>
-  <div class="card c-green">
-    <div class="ctitle">Access from Windows Explorer</div>
-    <p style="font-size:9.5pt;color:#475569;margin:4px 0">If the project is on your Desktop:</p>
-    <pre style="margin:6px 0"><code style="font-size:8.5pt">C:\Users\YourName\Desktop\PHPenv\</code></pre>
-    <p style="font-size:9pt;color:#64748b;margin:0">Your PHP files go in the <code>htdocs\</code> subfolder</p>
-  </div>
-</div>
-</div>
-
-<!-- ── CH.3 WIN: WEB INTERFACES (1/2) ── -->
-<div class="page page-break">
-<div class="page-content">
-  <div class="ch-header win">
-    <div class="ch-num">3</div>
-    <div><div class="ch-label">Chapter 3</div><div class="ch-title">Access the web interfaces</div><div class="ch-sub">Everything happens in your Windows browser</div></div>
-  </div>
-
-  <h2>🗺️ Overview</h2>
-  <table class="tbl">
-    <thead><tr><td>Service</td><td>Address</td><td>Description</td></tr></thead>
-    <tbody>
-      <tr><td class="svc">🏠 Dashboard</td><td class="url">localhost:8082</td><td class="desc">Home page with all links</td></tr>
-      <tr><td class="svc">🌐 PHP Site</td><td class="url">localhost:8080</td><td class="desc">Your PHP files (htdocs/)</td></tr>
-      <tr><td class="svc">🗄️ phpMyAdmin</td><td class="url">localhost:8081</td><td class="desc">Visual management of the DB</td></tr>
-      <tr><td class="svc">🐳 Portainer</td><td class="url">localhost:9000</td><td class="desc">Docker container management</td></tr>
-    </tbody>
-  </table>
-
-  <h2>🏠 Dashboard — localhost:8082</h2>
-  <p>Your daily <strong>starting point</strong>. It centralizes all links and your credentials.</p>
-  <div class="bbar"><div class="bdots"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div><div class="burl">http://localhost:8082</div></div>
-  <div class="bcontent">
-    <p style="margin:0 0 8px;font-weight:700;color:#1e293b">Dashboard — PHP Course Docker</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:8.5pt">
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:7px;border-left:3px solid #4f46e5">🌐 <strong>PHP Site</strong><br><span style="color:#64748b">localhost:8080 →</span></div>
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:7px;border-left:3px solid #d97706">🗄️ <strong>phpMyAdmin</strong><br><span style="color:#64748b">localhost:8081 →</span></div>
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:7px;border-left:3px solid #0891b2">🐳 <strong>Portainer</strong><br><span style="color:#64748b">localhost:9000 →</span></div>
-      <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;padding:7px;border-left:3px solid #ec4899">🏠 <strong>Dashboard</strong><br><span style="color:#64748b">localhost:8082 →</span></div>
-    </div>
-  </div>
-
-  <h2>🌐 PHP Site — localhost:8080</h2>
-  <p>Displays the contents of your <code>htdocs\</code> folder. The test page confirms that PHP and the database are working.</p>
-  <div class="bbar"><div class="bdots"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div><div class="burl">http://localhost:8080</div></div>
-  <div class="bcontent">
-    <p style="margin:0 0 5px;font-size:16pt;font-weight:800;color:#4f46e5">Hello PHP ! 👋</p>
-    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:6px;padding:6px 10px;font-size:9pt;color:#15803d;margin:7px 0">✅ MySQL connection successful! (MariaDB 10.6.x)</div>
-    <div style="font-size:9pt;color:#334155"><strong>PHP 7.4.x</strong> — Linux 64-bit</div>
-  </div>
-</div>
-</div>
-
-<!-- ── CH.3 WIN: WEB INTERFACES (2/2) ── -->
-<div class="page page-break">
-<div class="page-content">
-
-  <h2>🗄️ phpMyAdmin — localhost:8081</h2>
-  <p>Graphical interface to manage your database. Pre-configured connection (automatic).</p>
-  <div class="creds-box" style="margin-bottom:10px">
-    <table><tr><td>🌐 Address</td><td>http://localhost:8081</td></tr><tr><td>👤 Username</td><td>root</td></tr><tr><td>🔑 Password</td><td>root</td></tr><tr><td>🗃️ Database</td><td>app</td></tr></table>
-  </div>
-  <div class="alert a-warn">
-    <div class="aico">⏱️</div>
-    <div class="abody"><div class="atitle">phpMyAdmin not responding?</div><div class="atext">The DB takes 10 to 20 seconds to start. Wait and refresh with <strong>Ctrl+R</strong> or <strong>F5</strong>.</div></div>
-  </div>
-
-  <h2>🐳 Portainer — localhost:9000</h2>
-  <p>Graphical interface to manage your Docker containers (start, stop, restart, view logs).</p>
-
-  <div class="alert a-red">
-    <div class="aico">⚠️</div>
-    <div class="abody">
-      <div class="atitle">Act within the first 5 minutes!</div>
-      <div class="atext">
-        Portainer expires its initialization for security reasons.
-        After startup, go <strong>immediately</strong> to http://localhost:9000 and create your account.
-        If you see the <em>"timeout"</em> page → see the Troubleshooting chapter (p. 10) or double-click on <code>reset-portainer.bat</code>.
-      </div>
-    </div>
-  </div>
-
-  <h3 class="win">Create your account (first access)</h3>
-  <ul class="steps">
-    <li class="step"><div class="snum">1</div><div><div class="stitle">Open http://localhost:9000</div><div class="sdesc">Portainer asks you to create an administrator account</div></div></li>
-    <li class="step"><div class="snum">2</div><div><div class="stitle">Enter a username and a password</div><div class="sdesc">Example: <code>admin</code> — Password: 12 characters minimum</div></div></li>
-    <li class="step"><div class="snum">3</div><div><div class="stitle">Click "Create user"</div><div class="sdesc">Then choose <strong>"Get Started" → "local"</strong></div></div></li>
-  </ul>
-
-  <h3 class="win">What you can do in Portainer</h3>
-  <div class="bbar"><div class="bdots"><div class="bd bd-r"></div><div class="bd bd-y"></div><div class="bd bd-g"></div></div><div class="burl">http://localhost:9000 → Containers</div></div>
-  <div class="bcontent">
-    <table style="width:100%;font-size:8.5pt;border-collapse:collapse">
-      <tr style="background:#f8fafc;border-bottom:1px solid #e2e8f0"><td style="padding:5px 8px;font-weight:700">Container</td><td style="padding:5px 8px;font-weight:700">Status</td><td style="padding:5px 8px;font-weight:700">Available actions</td></tr>
-      <tr style="border-bottom:1px solid #f1f5f9"><td style="padding:5px 8px">cours_web</td><td style="padding:5px 8px"><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:10px;font-size:8pt">running</span></td><td style="padding:5px 8px;color:#0891b2">▶ ■ ↺ 📋</td></tr>
-      <tr style="border-bottom:1px solid #f1f5f9"><td style="padding:5px 8px">cours_db</td><td style="padding:5px 8px"><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:10px;font-size:8pt">running</span></td><td style="padding:5px 8px;color:#0891b2">▶ ■ ↺ 📋</td></tr>
-      <tr><td style="padding:5px 8px">cours_phpmyadmin</td><td style="padding:5px 8px"><span style="background:#dcfce7;color:#166534;padding:2px 8px;border-radius:10px;font-size:8pt">running</span></td><td style="padding:5px 8px;color:#0891b2">▶ ■ ↺ 📋</td></tr>
-    </table>
-    <p style="font-size:8pt;color:#94a3b8;margin-top:6px">▶ Start &nbsp; ■ Stop &nbsp; ↺ Restart &nbsp; 📋 View logs</p>
-  </div>
-</div>
-</div>
-
-<!-- ── CH.4 WIN: WORKING WITH PHP ── -->
-<div class="page page-break">
-<div class="page-content">
-  <div class="ch-header win">
-    <div class="ch-num">4</div>
-    <div><div class="ch-label">Chapter 4</div><div class="ch-title">Working with PHP</div><div class="ch-sub">Create, edit and test your PHP scripts on Windows</div></div>
-  </div>
-
-  <h2>📁 The htdocs folder — your workspace</h2>
-  <p>All your PHP files must be in the <code>htdocs\</code> folder of the project. It is directly accessible from <strong>Windows Explorer</strong>.</p>
-  <div class="card c-blue">
-    <div class="ctitle">📂 Where is htdocs?</div>
-    <pre style="margin:4px 0"><code style="font-size:8.5pt;line-height:1.9">C:\Users\YourName\Desktop\PHPenv\
-├── 📁 <span class="cv">htdocs\</span>          ← <span class="cs">YOUR PHP FILES HERE</span>
-│   ├── index.php       ← test page (already created)
-│   └── hello.php       ← your next file
-└── docker-compose.yml  ← do not modify</code></pre>
-  </div>
-
-  <h2>✍️ Create your first PHP file</h2>
-  <ul class="steps">
-    <li class="step"><div class="snum">1</div><div><div class="stitle">Open the <code>htdocs\</code> folder in Windows Explorer</div><div class="sdesc">Double-click from your Desktop → <code>PHPenv</code> folder → <code>htdocs</code></div></div></li>
-    <li class="step"><div class="snum">2</div><div><div class="stitle">Create a new file <code>hello.php</code></div><div class="sdesc">In VS Code, Notepad++, or any editor. The <code>.php</code> extension is required.</div></div></li>
-    <li class="step"><div class="snum">3</div><div><div class="stitle">Write your PHP code and save</div></div></li>
-    <li class="step"><div class="snum">4</div><div><div class="stitle">Open in the browser</div><div class="sdesc"><code>http://localhost:8080/hello.php</code> — refresh with <strong>Ctrl+F5</strong></div></div></li>
-  </ul>
-  <pre><code><span class="ck">&lt;?php</span>
-echo <span class="cs">"Hello world!"</span>;
-<span class="ck">?&gt;</span></code></pre>
-  <div class="alert a-ok">
-    <div class="aico">🎉</div>
-    <div class="abody"><div class="atitle">No need to restart!</div><div class="atext">Every change to your PHP files is visible immediately after <strong>Ctrl+F5</strong> in the browser.</div></div>
-  </div>
-
-  <h2>🔌 Database connection (PDO)</h2>
-  <pre><code><span class="cc">// Connect to the database</span>
-<span class="cv">$pdo</span> = new PDO(
-    <span class="cs">"mysql:host=db;dbname=app;charset=utf8mb4"</span>,
-    <span class="cs">"app"</span>,   <span class="cc">// username</span>
-    <span class="cs">"app"</span>    <span class="cc">// password</span>
-);
-
-<span class="cc">// Retrieve data</span>
-<span class="cv">$stmt</span> = <span class="cv">$pdo</span>->query(<span class="cs">"SELECT * FROM my_table"</span>);
-<span class="ck">foreach</span> (<span class="cv">$stmt</span> <span class="ck">as</span> <span class="cv">$row</span>) {
-    echo <span class="cv">$row</span>[<span class="cs">'name'</span>] . <span class="cs">"&lt;br&gt;"</span>;
-}</code></pre>
-  <div class="alert a-tip">
-    <div class="aico">💡</div>
-    <div class="abody"><div class="atitle">The host is "db", not "localhost"</div><div class="atext">In Docker, services communicate via their name. The database is called <code>db</code> — even on Windows.</div></div>
-  </div>
-</div>
-</div>
-
-<!-- ── CH.5 WIN: phpMyAdmin ── -->
-<div class="page page-break">
-<div class="page-content">
-  <div class="ch-header win">
-    <div class="ch-num">5</div>
-    <div><div class="ch-label">Chapter 5</div><div class="ch-title">Manage the database</div><div class="ch-sub">Create tables and manipulate data with phpMyAdmin</div></div>
-  </div>
-
-  <h2>🔑 Log in to phpMyAdmin</h2>
-  <p>Go to <strong>http://localhost:8081</strong>. Automatic connection (pre-configured).</p>
-  <div class="creds-box">
-    <table><tr><td>🌐 Address</td><td>http://localhost:8081</td></tr><tr><td>👤 Username</td><td>root</td></tr><tr><td>🔑 Password</td><td>root</td></tr><tr><td>🗃️ Database</td><td>app</td></tr></table>
-  </div>
-
-  <h2>🛠️ Create a table</h2>
-  <ul class="steps">
-    <li class="step"><div class="snum">1</div><div><div class="stitle">In the left column, click on "app"</div><div class="sdesc">This is your database</div></div></li>
-    <li class="step"><div class="snum">2</div><div><div class="stitle">"Structure" tab → "Create table"</div><div class="sdesc">Give it a name (e.g.: <code>users</code>) and choose the number of columns</div></div></li>
-    <li class="step"><div class="snum">3</div><div><div class="stitle">Define your columns, then "Save"</div><div class="sdesc">Always add an <code>id</code> column as INT AUTO_INCREMENT as the primary key</div></div></li>
-  </ul>
-
-  <h2>📊 Example "users" table</h2>
-  <table class="tbl">
-    <thead><tr><td>Column</td><td>Type</td><td>Length</td><td>Options</td></tr></thead>
-    <tbody>
-      <tr><td><code>id</code></td><td>INT</td><td>11</td><td style="color:#059669;font-size:9pt">PRIMARY KEY, AUTO_INCREMENT</td></tr>
-      <tr><td><code>name</code></td><td>VARCHAR</td><td>100</td><td style="color:#64748b">—</td></tr>
-      <tr><td><code>email</code></td><td>VARCHAR</td><td>150</td><td style="color:#64748b">—</td></tr>
-      <tr><td><code>date_created</code></td><td>DATETIME</td><td>—</td><td style="color:#64748b">DEFAULT CURRENT_TIMESTAMP</td></tr>
-    </tbody>
-  </table>
-
-  <h2>🔍 Execute an SQL query</h2>
-  <p><strong>"SQL"</strong> tab in phpMyAdmin:</p>
-  <pre><code><span class="cc">-- Insert data</span>
-<span class="ck">INSERT INTO</span> users (name, email)
-<span class="ck">VALUES</span> (<span class="cs">'Alice Martin'</span>, <span class="cs">'alice@example.com'</span>);
-
-<span class="cc">-- Read all data</span>
-<span class="ck">SELECT</span> * <span class="ck">FROM</span> users;</code></pre>
-</div>
-</div>
-
-<!-- ── CH.6 WIN: STOP / RESTART ── -->
-<div class="page page-break">
-<div class="page-content">
-  <div class="ch-header win">
-    <div class="ch-num">6</div>
-    <div><div class="ch-label">Chapter 6</div><div class="ch-title">Stop and restart</div><div class="ch-sub">Manage the environment without the command line</div></div>
-  </div>
-
-  <h2>⏹️ Stop the environment</h2>
-  <div class="g2">
-    <div class="card c-blue"><div class="ctitle">Option A — Launcher (recommended)</div><p style="font-size:9.5pt;color:#475569"><strong>Double-click</strong> on <code>launcher.bat</code> → click <strong>"Stop"</strong>. You can also Restart or Reset Portainer from this window.</p></div>
-    <div class="card c-cyan"><div class="ctitle">Option B — Via Portainer</div><ol style="font-size:9pt;color:#475569;line-height:1.9;padding-left:14px"><li>Open <code>localhost:9000</code></li><li><strong>"Containers"</strong> tab</li><li>Check all containers</li><li>Click <strong>"Stop"</strong></li></ol></div>
-  </div>
-  <div class="alert a-ok">
-    <div class="aico">💾</div>
-    <div class="abody"><div class="atitle">Your data is preserved!</div><div class="atext">Stopping the services does not delete your PHP files or your database data. Everything is preserved for the next launch.</div></div>
-  </div>
-
-  <h2>↺ Restart a specific service</h2>
-  <ul class="steps">
-    <li class="step"><div class="snum">1</div><div><div class="stitle">Portainer → http://localhost:9000 → "Containers"</div></div></li>
-    <li class="step"><div class="snum">2</div><div><div class="stitle">Find the container to restart</div><div class="sdesc"><code>cours_web</code> = Apache+PHP &nbsp;|&nbsp; <code>cours_db</code> = DB &nbsp;|&nbsp; <code>cours_phpmyadmin</code></div></div></li>
-    <li class="step"><div class="snum">3</div><div><div class="stitle">Click the ↺ (Restart) button</div><div class="sdesc">The service restarts in a few seconds</div></div></li>
-  </ul>
-
-  <div class="alert a-tip">
-    <div class="aico">💡</div>
-    <div class="abody"><div class="atitle">Daily Windows routine</div><div class="atext"><strong>Morning</strong>: Open Docker Desktop → double-click <code>launcher.bat</code> → Start<br><strong>Evening</strong>: <code>launcher.bat</code> → Stop</div></div>
-  </div>
-</div>
-</div>
-
-<!-- ── CH.7 WIN: TROUBLESHOOTING ── -->
-<div class="page">
-<div class="page-content">
-  <div class="ch-header win">
-    <div class="ch-num">7</div>
-    <div><div class="ch-label">Chapter 7</div><div class="ch-title">Windows Troubleshooting</div><div class="ch-sub">Solutions to the most common issues</div></div>
-  </div>
-
-  <h2>🔴 Common issues</h2>
-
-  <div class="card c-red" style="margin-bottom:9px">
-    <div class="ctitle" style="color:#dc2626">❌ Portainer — "timeout" page (/timeout.html)</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0 0 5px"><strong>Solution A</strong>: Use <strong>"Reset Portainer"</strong> in the launcher.<br><strong>Solution B</strong>: Double-click on <code>reset-portainer.bat</code> in the project folder.</p>
-    <p style="font-size:9pt;color:#475569;margin:4px 0 0">Then go <strong>immediately</strong> to http://localhost:9000 to create your account.</p>
-  </div>
-
-  <div class="card c-red" style="margin-bottom:9px">
-    <div class="ctitle" style="color:#dc2626">❌ Docker Desktop not detected</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0">Open <strong>Docker Desktop</strong> from the Start menu → wait for the whale in the taskbar → relaunch <code>launcher.bat</code>.</p>
-  </div>
-
-  <div class="card c-red" style="margin-bottom:9px">
-    <div class="ctitle" style="color:#dc2626">❌ start.bat closes immediately</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0">Right-click → <strong>"Run as administrator"</strong>. Or open CMD in the folder and type <code>start.bat</code>.</p>
-  </div>
-
-  <div class="card c-red" style="margin-bottom:9px">
-    <div class="ctitle" style="color:#dc2626">❌ "port already in use" / "bind failed" error</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0">Another program is using port 8080 or 8081. Close Skype, IIS, WAMP, or any other server. Restart and relaunch <code>start.bat</code>.</p>
-  </div>
-
-  <div class="card c-red" style="margin-bottom:9px">
-    <div class="ctitle" style="color:#dc2626">❌ PHP files are not displayed / not updating</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0">Verify that your files are in <code>htdocs\</code> of the project. Refresh with <strong>Ctrl+F5</strong> (clears cache).</p>
-  </div>
-
-  <div class="card c-red" style="margin-bottom:16px">
-    <div class="ctitle" style="color:#dc2626">❌ phpMyAdmin — connection error</div>
-    <p style="font-size:9.5pt;color:#475569;margin:0">The DB takes 10 to 20 seconds to start → wait and refresh (F5 or Ctrl+R).</p>
-  </div>
-
-  <div class="divider"></div>
-  <h2>🔑 Credentials summary</h2>
-  <div class="creds-box">
-    <table>
-      <tr><td>🌐 PHP Site</td><td>http://localhost:8080</td></tr>
-      <tr><td>🗄️ phpMyAdmin</td><td>http://localhost:8081</td></tr>
-      <tr><td>🐳 Portainer</td><td>http://localhost:9000</td></tr>
-      <tr><td>🏠 Dashboard</td><td>http://localhost:8082</td></tr>
-      <tr><td>📂 DB Host (in PHP)</td><td>db</td></tr>
-      <tr><td>🗃️ Database</td><td>app</td></tr>
-      <tr><td>👤 DB Username</td><td>app</td></tr>
-      <tr><td>🔑 DB Password</td><td>app</td></tr>
-      <tr><td>👑 Root password</td><td>root</td></tr>
-    </table>
-  </div>
-  <div style="text-align:center;padding:16px;background:var(--light);border-radius:10px;border:1px solid var(--border);margin-top:16px">
-    <p style="font-size:9.5pt;color:var(--muted);margin:0">Windows Tutorial — Apache 2.4 + PHP 7.4 + MariaDB 10.6 + phpMyAdmin 5.2 + Portainer CE<br>Windows 10 or 11 — Intel/AMD (x64) or Qualcomm (Arm64) — Docker Desktop</p>
-  </div>
-</div>
-</div>
-
-</div><!-- end tuto-win -->
-
 
 <!-- ════════════════════════════════════════
      JAVASCRIPT
 ════════════════════════════════════════ -->
 <script>
-function selectOS(os) {
-  document.getElementById('page-selector').style.display = 'none';
-  document.getElementById('tuto-' + os).classList.remove('hidden');
-}
-
-function goBack() {
-  document.querySelectorAll('.tuto').forEach(function(el) {
-    el.classList.add('hidden');
-  });
-  document.getElementById('page-selector').style.display = '';
-}
-
 /* ── Copy buttons on all <pre> blocks ── */
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('pre').forEach(function(pre) {

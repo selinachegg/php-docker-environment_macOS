@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="frontP.png" alt="PHP Docker Environment" width="600">
-</p>
-
 <h1 align="center">PHP Docker Environment — macOS</h1>
 
 <p align="center">
