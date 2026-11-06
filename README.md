@@ -1,8 +1,8 @@
-<h1 align="center">PHP Docker Environment — macOS</h1>
+<h1 align="center">PHP Docker Environment, macOS</h1>
 
 <p align="center">
-  <strong>XAMPP equivalent — ready to use, zero configuration.</strong><br>
-  Apache 2.4 · PHP 7.4 · MariaDB 10.6 · phpMyAdmin · Portainer
+  <strong>XAMPP equivalent, ready to use, zero configuration.</strong><br>
+  Apache 2.4, PHP 7.4, MariaDB 10.6, phpMyAdmin, Portainer
 </p>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 ---
 
-## Setup — 3 steps
+## Setup: 3 steps
 
 ### 1. Install Docker Desktop (once)
 
@@ -22,7 +22,7 @@ Download and install [Docker Desktop](https://www.docker.com/products/docker-des
 
 ### 2. Download this project
 
-**Option A — Without Git (beginners)**
+**Option A: without Git (beginners)**
 
 1. On this page, click the green **`<> Code`** button (top right)
 2. Click **`Download ZIP`**
@@ -30,7 +30,7 @@ Download and install [Docker Desktop](https://www.docker.com/products/docker-des
 4. **Extract** (unzip) the folder to your **Desktop**
 5. Name the folder **`PHPenv`**
 
-**Option B — With Git**
+**Option B: with Git**
 
 ```bash
 cd ~/Desktop
@@ -53,7 +53,7 @@ This removes macOS security blocks, sets permissions, and checks Docker. **You o
 
 ## Launch
 
-**Launcher (recommended)** — Double-click `launcher.command` for an interactive menu:
+**Launcher (recommended)**: Double-click `launcher.command` for an interactive menu:
 
 ```
   1)  Start
@@ -63,7 +63,7 @@ This removes macOS security blocks, sets permissions, and checks Docker. **You o
   5)  Quit
 ```
 
-The launcher **automatically starts Docker Desktop** if it's not running — no need to open it manually.
+The launcher **automatically starts Docker Desktop** if it's not running, no need to open it manually.
 
 Individual scripts are also available: `start.command`, `stop.command`, `reset-portainer.command`.
 
@@ -84,7 +84,7 @@ The first launch takes **5 to 10 minutes** (downloading images). After that: **~
 
 ## Working with PHP
 
-Your PHP files go in the **`htdocs/`** folder. Changes are **instant** — no restart needed.
+Your PHP files go in the **`htdocs/`** folder. Changes are **instant**, no restart needed.
 
 ```php
 <?php
@@ -123,7 +123,7 @@ PDF version: [Tutorial Mac (PDF)](tutorials/Tutorial%20%E2%80%94%20PHP%20Docker%
 
 ---
 
-## macOS security — what `install.sh` fixes
+## macOS security: what `install.sh` fixes
 
 | Problem | Cause | What the script does |
 |---------|-------|---------------------|
@@ -150,8 +150,8 @@ PDF version: [Tutorial Mac (PDF)](tutorials/Tutorial%20%E2%80%94%20PHP%20Docker%
 
 ## Tech stack
 
-- **PHP** 7.4 — PDO, MySQLi, GD, ZIP, MBString, OPcache
-- **Apache** 2.4 — mod_rewrite enabled
-- **MariaDB** 10.6 — 100% MySQL compatible
+- **PHP** 7.4: PDO, MySQLi, GD, ZIP, MBString, OPcache
+- **Apache** 2.4: mod_rewrite enabled
+- **MariaDB** 10.6: 100% MySQL compatible
 - **phpMyAdmin** 5.2
 - **Portainer** Community Edition
